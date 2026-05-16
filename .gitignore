@@ -216,3 +216,31 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ================= PROJECT SPECIFIC =================
+
+# Dataset
+dataset/
+data/
+chest_xray/
+
+# TensorFlow model files
+*.h5
+*.keras
+
+# SQLite database
+*.db
+
+# Uploaded X-ray images and generated reports
+static/uploads/
+
+# Generated PDF reports
+*.pdf
+
+# IDE folders
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
