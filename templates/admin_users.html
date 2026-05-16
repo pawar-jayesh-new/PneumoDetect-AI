@@ -1,0 +1,58 @@
+{% extends "admin_dashboard.html" %}
+{% block content %}
+
+<div class="admin-table-card">
+    <h2>User Management</h2>
+
+    <form method="GET" class="search-form">
+        <input type="text" name="search" placeholder="Search by name or email">
+        <button type="submit">Search</button>
+    </form>
+
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Total Uploads</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for user in users %}
+    <tr>
+        <td>{{ user[0] }}</td>
+        <td>{{ user[1] }}</td>
+        <td>{{ user[2] }}</td>
+        <td>{{ user[4] }}</td> <!-- total_uploads -->
+
+        <td>
+            {% if user[5] == 1 %}
+                <span style="color:green;font-weight:600;">Active</span>
+            {% else %}
+                <span style="color:red;font-weight:600;">Inactive</span>
+            {% endif %}
+        </td>
+
+        <td>
+            <a href="/admin-toggle-user/{{ user[0] }}" class="admin-btn primary-btn">
+                {% if user[5] == 1 %}
+                    Deactivate
+                {% else %}
+                    Activate
+                {% endif %}
+            </a>
+
+            <a href="/admin-delete-user/{{ user[0] }}" class="admin-btn danger-btn">
+                Delete
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+        </table>
+</div>
+
+{% endblock %}

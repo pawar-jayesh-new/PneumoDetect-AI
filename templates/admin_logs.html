@@ -1,0 +1,73 @@
+{% extends "admin_dashboard.html" %}
+{% block content %}
+
+<!-- ===== Activity Cards ===== -->
+
+<div class="stats-grid" style="margin-bottom: 25px;">
+
+    <div class="stat-card">
+        <h3>Logins Today</h3>
+        <div class="stat-number" id="loginsToday">0</div>
+    </div>
+
+    <div class="stat-card">
+        <h3>Failed Logins</h3>
+        <div class="stat-number" id="failedToday">0</div>
+    </div>
+
+</div>
+
+
+<!-- ===== System Logs Table ===== -->
+
+<div class="admin-table-card">
+    <h2>System Logs</h2>
+
+    <div style="margin-bottom:15px;">
+        <a href="/admin-export-logs" class="admin-btn primary-btn">
+            Download CSV
+        </a>
+    </div>
+
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Action</th>
+                <th>Details</th>
+                <th>Date & Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr class="{% if log['action'] == 'Failed Login' %}failed{% endif %}">
+                <td>{{ log["user_name"] }}</td>
+
+                <td>
+                    {% if log["role"] == "Admin" %}
+                        <span class="badge red">Admin</span>
+                    {% else %}
+                        <span class="badge blue">User</span>
+                    {% endif %}
+                </td>
+
+                <td>{{ log["action"] }}</td>
+                <td>{{ log["details"] }}</td>
+                <td>{{ log["timestamp"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+fetch("/admin-activity-data")
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("loginsToday").innerText = data.logins;
+        document.getElementById("failedToday").innerText = data.failed;
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "admin_dashboard.html" %}
+{% block content %}
+
+<div class="admin-table-card">
+    <h2>Doctor Report Activity</h2>
+
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Doctor ID</th>
+                <th>Doctor Name</th>
+                <th>Email</th>
+                <th>Total Reports</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>#{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+
+                <td>
+                    <a href="/admin-user-reports/{{ user[0] }}"
+                       class="admin-btn primary-btn">
+                        View Reports
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

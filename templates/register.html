@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PneumoDetect Register</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-container">
+      {% for message in messages %}
+        <div class="flash-message">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+<!-- Back Button -->
+<a href="{{ url_for('login') }}" class="back-btn">← Back</a>
+
+<div class="register-container">
+
+    <div class="register-card">
+
+        <h3 class="brand">PneumoDetect</h3>
+        <div class="icon"></div>
+
+        <h2>Create Account</h2>
+        <p class="subtitle">Register to continue</p>
+
+        <form method="POST" action="{{ url_for('register') }}">
+
+            <div class="input-box">
+                <input type="text" name="fullname" required>
+                <label>Full Name</label>
+            </div>
+
+            <div class="input-box">
+                <input type="email" name="email" required>
+                <label>Email</label>
+            </div>
+
+            <div class="input-box">
+                <input type="tel" name="contact" required>
+                <label>Contact Number</label>
+            </div>
+
+            <!-- Specialization -->
+            <div class="input-box">
+                  <input type="text" name="specialization" >
+                  <label>Specialization (e.g., Radiologist)</label>
+            </div>
+
+            <!-- Hospital Name -->
+            <div class="input-box">
+                 <input type="text" name="hospital" >
+                     <label>Hospital Name</label>
+            </div>
+
+
+            <div class="input-box">
+                <input type="password" name="password" required>
+                <label>Password</label>
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="confirm_password" required>
+                <label>Confirm Password</label>
+            </div>
+
+            <div class="terms-box">
+                <p class="terms-text">
+                    By creating an account, you agree to PneumoDetect's terms and conditions.
+                    Your medical data will be securely stored and used only for disease detection 
+                    and analysis purposes.
+                </p>
+
+                <label class="terms-check">
+                    <input type="checkbox" required>
+                    I agree to the Terms & Conditions
+                </label>
+            </div>
+
+            <button type="submit" class="register-btn">
+                Register
+            </button>
+
+            <p class="login-text">
+                Already have an account?
+                <a href="{{ url_for('login') }}" class="no-underline">
+                    Login
+                </a>
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

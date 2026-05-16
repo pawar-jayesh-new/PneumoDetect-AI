@@ -1,0 +1,52 @@
+{% extends "admin_dashboard.html" %}
+{% block content %}
+
+<div class="admin-table-card">
+    <h2>Reports of {{ doctor_name }}</h2>
+
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Report ID</th>
+                <th>Patient</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Prediction</th>
+                <th>Confidence</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for r in reports %}
+            <tr>
+                <td>#{{ r[0] }}</td>
+                <td>{{ r[1] }}</td>
+                <td>{{ r[2] }}</td>
+                <td>{{ r[3] }}</td>
+
+                <td>
+                    {% if r[4] == "NORMAL" %}
+                        <span class="badge green">NORMAL</span>
+                    {% elif r[4] == "VIRAL" %}
+                        <span class="badge orange">VIRAL</span>
+                    {% else %}
+                        <span class="badge red">BACTERIAL</span>
+                    {% endif %}
+                </td>
+
+                <td>{{ r[5] }}%</td>
+                <td>{{ r[6] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="/admin-reports" class="admin-btn primary-btn">
+        ← Back to All Reports
+    </a>
+
+</div>
+
+{% endblock %}

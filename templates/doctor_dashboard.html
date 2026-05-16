@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard - PneumoDetect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='doctor_dashboard.css') }}">
+
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            PneumoDetect
+        </div>
+
+        <ul class="nav-links">
+            <li class="active"><a href="{{ url_for('doctor_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('upload_page') }}">Upload X-ray</a></li>
+            <li><a href="{{ url_for('reports_page') }}">Reports</a></li>
+            <li><a href="{{ url_for('profile_page') }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+    <div class="top-section">
+        <h1>Welcome, Dr. {{ session['user'] }}</h1>
+        <p>Your centralized control panel for AI-powered diagnostics</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+
+    <div class="stat-card"
+         onclick="window.location.href='/reports?filter=all'">
+        <h3>Total Patients</h3>
+        <p class="stat-number" id="totalPatients">0</p>
+        <span>Registered cases</span>
+    </div>
+
+    <div class="stat-card"
+         onclick="window.location.href='/reports?filter=all'">
+        <h3>Total Reports</h3>
+        <p class="stat-number" id="totalReports">0</p>
+        <span>Generated reports</span>
+    </div>
+
+    <div class="stat-card"
+         onclick="window.location.href='/reports?filter=bacterial'">
+        <h3>Bacterial Cases</h3>
+        <p class="stat-number" id="bacterialCases">0</p>
+        <span>Detected cases</span>
+    </div>
+
+    <div class="stat-card"
+         onclick="window.location.href='/reports?filter=viral'">
+        <h3>Viral Cases</h3>
+        <p class="stat-number" id="viralCases">0</p>
+        <span>Detected cases</span>
+    </div>
+
+    <div class="stat-card"
+         onclick="window.location.href='/reports?filter=normal'">
+        <h3>Normal Cases</h3>
+        <p class="stat-number" id="normalCases">0</p>
+        <span>Healthy scans</span>
+    </div>
+
+    <div class="stat-card"
+         onclick="window.location.href='/reports?filter=today'">
+        <h3>Today's Reports</h3>
+        <p class="stat-number" id="todayReports">0</p>
+        <span>Generated today</span>
+    </div>
+
+</div>
+
+
+</main>
+
+
+</div>
+<script>
+function updateDashboard() {
+    fetch("/dashboard-stats")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("totalPatients").innerText = data.totalPatients;
+            document.getElementById("totalReports").innerText = data.totalReports;
+            document.getElementById("bacterialCases").innerText = data.bacterialCases;
+            document.getElementById("viralCases").innerText = data.viralCases;
+            document.getElementById("normalCases").innerText = data.normalCases;
+            document.getElementById("todayReports").innerText = data.todayReports;
+        })
+        .catch(error => console.error("Error fetching stats:", error));
+}
+
+// Load immediately
+updateDashboard();
+
+// Auto refresh every 5 seconds
+setInterval(updateDashboard, 5000);
+</script>
+
+
+</body>
+
+</html>

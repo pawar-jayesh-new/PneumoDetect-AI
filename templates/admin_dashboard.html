@@ -1,0 +1,195 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="top-section">
+    <h1>Welcome, Admin</h1>
+    <p>AI-based Pneumonia Detection Monitoring System</p>
+</div>
+
+<!-- ================= STATS ================= -->
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <h3>Total Users</h3>
+        <p class="stat-number" id="totalUsers">0</p>
+        <span>Registered system users</span>
+    </div>
+
+    <div class="stat-card">
+        <h3>Total Predictions</h3>
+        <p class="stat-number" id="totalPredictions">0</p>
+        <span>All AI predictions</span>
+    </div>
+
+    <div class="stat-card">
+        <h3>Normal Cases</h3>
+        <p class="stat-number" id="normalCases">0</p>
+        <span>Healthy scans</span>
+    </div>
+
+    <div class="stat-card">
+        <h3>Viral Pneumonia</h3>
+        <p class="stat-number" id="viralCases">0</p>
+        <span>Detected viral cases</span>
+    </div>
+
+    <div class="stat-card">
+        <h3>Bacterial Pneumonia</h3>
+        <p class="stat-number" id="bacterialCases">0</p>
+        <span>Detected bacterial cases</span>
+    </div>
+
+    <div class="stat-card">
+        <h3>Today's Uploads</h3>
+        <p class="stat-number" id="todayUploads">0</p>
+        <span>Uploaded today</span>
+    </div>
+
+    <div class="stat-card">
+        <h3>Low Confidence</h3>
+        <p class="stat-number" id="lowConfidence">0</p>
+        <span>Below threshold predictions</span>
+    </div>
+
+    <div class="stat-card">
+        <h3>Active Model</h3>
+        <p class="stat-number" id="activeModel">-</p>
+        <span>Currently deployed</span>
+    </div>
+
+</div>
+
+<!-- ================= CHARTS ================= -->
+
+<div class="charts-section">
+
+    <div class="chart-row">
+
+        <div class="chart-card">
+            <h3>Prediction Distribution</h3>
+            <canvas id="distributionChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+            <h3>Weekly Upload Trend</h3>
+            <canvas id="weeklyChart"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= MODEL INFO ================= -->
+
+<div class="model-info">
+    <h2>🤖 Current Model Information</h2>
+    <p><strong>Model Name:</strong> CNN-v1</p>
+    <p><strong>Architecture:</strong> MobileNetV2 Transfer Learning</p>
+    <p><strong>Accuracy:</strong> 92%</p>
+    <p><strong>Last Updated:</strong> Feb 2026</p>
+</div>
+
+<!-- ================= LOAD STATS ================= -->
+
+<script>
+
+function loadAdminStats(){
+
+fetch("/admin-stats")
+.then(res => res.json())
+.then(data => {
+
+document.getElementById("totalUsers").innerText = data.totalUsers
+document.getElementById("totalPredictions").innerText = data.totalPredictions
+document.getElementById("normalCases").innerText = data.normal
+document.getElementById("viralCases").innerText = data.viral
+document.getElementById("bacterialCases").innerText = data.bacterial
+document.getElementById("todayUploads").innerText = data.today
+document.getElementById("lowConfidence").innerText = data.lowConfidence
+document.getElementById("activeModel").innerText = data.model
+
+})
+
+}
+
+loadAdminStats()
+
+</script>
+
+<!-- ================= LOAD CHARTS ================= -->
+
+<script>
+
+window.onload = function(){
+
+fetch("/admin-chart-data")
+.then(res => res.json())
+.then(data => {
+
+const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+
+/* ================= PIE CHART ================= */
+
+new Chart(document.getElementById("distributionChart"),{
+
+type:'pie',
+
+data:{
+labels:['Normal','Viral','Bacterial'],
+
+datasets:[{
+
+data:[
+data.distribution.NORMAL || 0,
+data.distribution.VIRAL || 0,
+data.distribution.BACTERIAL || 0
+],
+
+backgroundColor:[
+'#16a34a',
+'#f59e0b',
+'#dc2626'
+]
+
+}]
+
+}
+
+})
+
+
+/* ================= WEEKLY BAR CHART ================= */
+
+new Chart(document.getElementById("weeklyChart"),{
+
+type:'bar',
+
+data:{
+labels:days,
+
+datasets:[{
+
+label:'Uploads',
+
+data:days.map((_,i)=> data.weekly[String(i)] || 0),
+
+backgroundColor:'#0b5e5e'
+
+}]
+
+}
+
+})
+
+})
+
+}
+
+</script>
+
+{% endblock %}

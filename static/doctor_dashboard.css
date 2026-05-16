@@ -1,0 +1,634 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f8f9;
+}
+
+/* Layout */
+.layout {
+    display: flex;
+}
+
+/* ================= SIDEBAR CLEAN VERSION ================= */
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #0b5e5e;
+    position: fixed;
+    padding-top: 30px;
+}
+
+.logo {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+/* Remove background from li */
+.nav-links li {
+    margin-bottom: 15px;
+    padding: 0 20px;  /* spacing only */
+}
+
+/* Button style */
+.nav-links li a {
+    display: block;
+    padding: 12px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+    background-color: transparent;
+}
+
+/* Hover Effect */
+.nav-links li a:hover {
+    background-color: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.5);
+    transform: translateX(4px);
+}
+
+/* Active Page */
+.nav-links li.active a {
+    background-color: white;
+    color: #0b5e5e;
+    border: none;
+    font-weight: 600;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 40px;
+    width: 100%;
+}
+
+.top-section h1 {
+    margin-bottom: 5px;
+}
+
+.top-section p {
+    color: gray;
+    margin-bottom: 35px;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* Card Style */
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    margin-bottom: 10px;
+    color: #0b5e5e;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-card span {
+    font-size: 13px;
+    color: gray;
+}
+
+/* ------------------------uploadx-xry----------- */
+/* ================= UPLOAD CARD ================= */
+
+.upload-card {
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+
+    max-width: 600px;   /* thoda compact */
+    width: 100%;        /* responsive */
+    margin: 0 auto;     /* 🔥 horizontal center */
+}
+
+/* Form Rows */
+.form-row {
+    display: flex;
+    flex-direction: column;   /* 🔥 vertical */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+/* Inputs */
+.form-row input,
+.form-row select {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+/* Focus effect */
+.form-row input:focus,
+.form-row select:focus {
+    border-color: #0b5e5e;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(11,94,94,0.1);
+}
+
+/* Detect Button */
+.detect-btn {
+    width: 100%;              /* 🔥 full width button */
+    padding: 12px;
+    background-color: #0b5e5e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.detect-btn:hover {
+    background-color: #094747;
+    transform: translateY(-2px);
+}
+
+
+/* ---------------report-------------------- */
+/* REPORTS CARD */
+/* REPORTS CARD */
+.reports-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+
+    max-height: 500px;   /* 🔥 fixed height */
+    overflow-y: auto;    /* 🔥 vertical scroll */
+}
+
+/* Custom Scrollbar */
+.reports-card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.reports-card::-webkit-scrollbar-thumb {
+    background-color: #0b5e5e;
+    border-radius: 10px;
+}
+
+.reports-card::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* TABLE */
+/* REPORTS CARD */
+.reports-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/* TABLE */
+.reports-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reports-table thead th {
+    position: sticky;   /* 🔥 sticky */
+    top: 0;
+    background-color: #0b5e5e;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    z-index: 2;
+}
+
+.reports-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.reports-table tr:hover {
+    background-color: #f4f8f9;
+}
+
+/* BADGES */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge.normal {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.badge.pneumonia {
+    background: #fee2e2;
+    color: #991b1b;
+}
+.download-btn {
+    padding: 6px 14px;
+    background-color: #0b5e5e;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.download-btn:hover {
+    background-color: #094747;
+}
+
+.search-form {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-form input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.search-form button {
+    padding: 8px 15px;
+    background-color: #0b5e5e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #094747;
+}
+
+.delete-btn {
+    padding: 6px 12px;
+    background-color: #dc2626;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.delete-btn:hover {
+    background-color: #b91c1c;
+}
+
+
+/* ================= PROFILE SECTION ================= */
+
+.profile-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    margin-bottom: 25px;
+    max-width: 600px;
+}
+
+.profile-card h2 {
+    margin-bottom: 15px;
+}
+
+.profile-card label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.profile-card input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.update-btn {
+    margin-top: 15px;
+    padding: 8px 18px;
+    background-color: #0b5e5e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.update-btn:hover {
+    background-color: #094747;
+}
+
+/* Danger Card */
+.danger-card {
+    border-left: 5px solid #dc2626;
+}
+
+.delete-btn {
+    margin-top: 10px;
+    padding: 8px 18px;
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #b91c1c;
+}
+
+/* PROFILE LAYOUT ROW */
+.profile-row {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+/* Each card equal width */
+.profile-row .profile-card {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Center delete row */
+.center-row {
+    justify-content: center;
+}
+
+.center-card {
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Danger style */
+.danger-card {
+    border-left: 5px solid #dc2626;
+}
+
+/* ================= RESULT PAGE ================= */
+
+.result-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    
+}
+
+.result-title {
+    margin-bottom: 5px;
+}
+
+.result-subtitle {
+    margin-bottom: 25px;
+    color: gray;
+}
+
+/* Card */
+.result-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* Images */
+.result-images {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.image-box {
+    flex: 1;
+    min-width: 300px;
+}
+
+.image-box img {
+    width: 100%;
+    height: 350px;
+    object-fit: contain;   /* full image visible */
+    background: #f3f4f6;   /* light background */
+    border-radius: 12px;
+}
+
+
+/* Prediction */
+.prediction-section {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.prediction-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #0b5e5e;
+    color: white;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.progress-container {
+    width: 100%;
+    height: 20px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #16a34a, #22c55e);
+}
+
+.confidence-text {
+    margin-top: 10px;
+}
+
+/* Buttons */
+.result-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* ================= RESULT BUTTONS ================= */
+
+.action-btn {
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease;
+    display: inline-block;
+    min-width: 160px;
+    text-align: center;
+}
+
+/* Primary */
+.action-btn {
+    background-color: #0b5e5e;
+    color: white;
+}
+
+.action-btn:hover {
+    background-color: #094747;
+    transform: translateY(-2px);
+}
+
+/* Secondary */
+.secondary-action {
+    background-color: #64748b;
+}
+
+.secondary-action:hover {
+    background-color: #475569;
+}
+
+/* ================= CENTER RESULT CARD ================= */
+
+.result-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;   /* 🔥 exactly same style as reports */
+    width: 100%;
+}
+
+.result-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.stat-card {
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* ================= LOADING OVERLAY ================= */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-box {
+    background: white;
+    padding: 30px 50px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 5px solid #e5e7eb;
+    border-top: 5px solid #0b5e5e;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.probability-box {
+    margin-top: 20px;
+    background: #f4f9f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.prob-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.prob-row:last-child {
+    border-bottom: none;
+}
+
+
+
+
+
+.status-text {
+    margin-top: 10px;
+    font-weight: 500;
+    color: #444;
+}
+
+.explanation-box {
+    margin-top: 20px;
+    background: #f4f7f6;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.patient-info {
+    margin-top: 15px;
+    background: #eef2f1;
+    padding: 10px;
+    border-radius: 8px;
+}

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PneumoDetect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- ================= NAVBAR SECTION ================= -->
+<nav class="navbar">
+
+    <div class="logo-box">
+        PneumoDetect
+    </div>
+
+    <div class="nav-box">
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+</nav>
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero" id="home">
+
+    <div class="hero-left">
+        <h1>AI-Powered Pneumonia Detection <br> With <span>PneumoDetect</span></h1>
+
+        <p>
+            PneumoDetect is an AI-powered platform designed to detect 
+            Pneumonia using advanced deep learning 
+            and chest X-ray image analysis.
+        </p>
+
+        <div class="hero-buttons">
+
+            <!-- ✅ Proper Flask Routing -->
+            <a href="{{ url_for('login') }}" class="primary-btn">
+                Get Started
+            </a>
+
+        </div>
+
+        <div class="stats">
+            <div>
+                <h3>95%</h3>
+                <p>Accuracy</p>
+            </div>
+            <div>
+                <h3>5K+</h3>
+                <p>Images Trained</p>
+            </div>
+            <div>
+                <h3>Instant</h3>
+                <p>Results</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <img src="{{ url_for('static', filename='images/doctor.png') }}" alt="AI Doctor">
+    </div>
+
+</section>
+
+<!-- ================= ABOUT SECTION ================= -->
+<section class="about-section" id="about">
+
+    <p class="section-tag">Who We Are</p>
+    <h2>About PneumoDetect</h2>
+
+    <p class="about-description">
+        PneumoDetect is an AI-based healthcare platform developed to detect Pneumonia 
+        using advanced deep learning algorithms and chest X-ray analysis. 
+        Our goal is to provide fast, accurate, and accessible medical support 
+        through intelligent technology.
+    </p>
+
+    <div class="about-highlights">
+        <div class="highlight-box">
+            <h3>Our Mission</h3>
+            <p>To make early pneumonia detection faster and more reliable using AI.</p>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Our Vision</h3>
+            <p>To bridge the gap between healthcare and artificial intelligence.</p>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Our Technology</h3>
+            <p>Deep Learning models trained on thousands of medical X-ray images.</p>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS SECTION ================= -->
+<section class="timeline-section" id="how">
+
+    <p class="section-tag">Process</p>
+    <h2>How PneumoDetect Works</h2>
+
+    <div class="timeline">
+
+        <div class="timeline-container left">
+            <div class="content">
+                <h3>Step 1 – Upload X-ray</h3>
+                <p>User uploads chest X-ray image into the system.</p>
+            </div>
+        </div>
+
+        <div class="timeline-container right">
+            <div class="content">
+                <h3>Step 2 – AI Processing</h3>
+                <p>Deep learning model analyzes the image using trained CNN algorithms.</p>
+            </div>
+        </div>
+
+        <div class="timeline-container left">
+            <div class="content">
+                <h3>Step 3 – Disease Classification</h3>
+                <p>The system classifies whether the X-ray shows Pneumonia as Normal, Viral, or Bacterial.</p>
+            </div>
+        </div>
+
+        <div class="timeline-container right">
+            <div class="content">
+                <h3>Step 4 – Instant Result</h3>
+                <p>User receives fast and accurate prediction results instantly.</p>
+            </div>
+        </div>
+
+    </div>
+    <script>
+    const timeline = document.querySelector('.timeline');
+    const timelineItems = document.querySelectorAll('.timeline-container');
+
+    function animateTimeline() {
+        const triggerBottom = window.innerHeight * 0.85;
+        const timelineTop = timeline.getBoundingClientRect().top;
+
+        // Line grow animation
+        if (timelineTop < triggerBottom) {
+            timeline.classList.add('animate');
+        }
+
+        // Step animation
+        timelineItems.forEach(item => {
+            const itemTop = item.getBoundingClientRect().top;
+
+            if (itemTop < triggerBottom) {
+                item.classList.add('show');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', animateTimeline);
+    animateTimeline();
+</script>
+
+</section>
+
+
+<!-- ================= FEATURES SECTION ================= -->
+<section class="features-section" id="features">
+
+    <p class="section-tag">Features</p>
+    <h2>Powerful Features of PneumoDetect</h2>
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+            <h3>🤖 AI-Based Detection</h3>
+            <p>Advanced deep learning algorithms for accurate analysis.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🎯 High Accuracy</h3>
+            <p>Trained on thousands of X-ray images.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>⚡ Fast Results</h3>
+            <p>Instant predictions within seconds.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🖥 User-Friendly</h3>
+            <p>Simple and clean interface for users.</p>
+        </div>
+
+        <div class="feature-card bottom-card">
+            <h3>🔒 Secure & Safe</h3>
+            <p>Ensures patient data privacy.</p>
+        </div>
+
+        <div class="feature-card bottom-card">
+            <h3>📊 Real-Time Analysis</h3>
+            <p>Immediate classification using AI.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT SECTION ================= -->
+<section class="contact-section" id="contact">
+
+    <p class="section-tag">Get In Touch</p>
+    <h2>Contact PneumoDetect Team</h2>
+
+    <div class="contact-container">
+        <form class="contact-form">
+
+            <div class="input-group">
+                <input type="text" required>
+                <label>Full Name</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" required>
+                <label>Email Address</label>
+            </div>
+
+            <div class="input-group">
+                <textarea rows="4" required></textarea>
+                <label>Your Message</label>
+            </div>
+
+            <button type="submit" class="contact-btn">
+                Send Message
+            </button>
+
+        </form>
+    </div>
+
+    <p class="contact-info">
+        📧 pneumodetect.ai@gmail.com
+    </p>
+
+</section>
+
+
+<!-- ================= FOOTER SECTION ================= -->
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-column">
+            <h3>🫁 PneumoDetect</h3>
+            <p>
+                AI-powered platform for early pneumonia detection 
+                using advanced deep learning and chest X-ray analysis.
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Contact</h4>
+            <p>📧 pneumodetect.ai@gmail.com</p>
+            <p>📍 Computer Department Project</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 PneumoDetect. All Rights Reserved.
+    </div>
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload X-ray - PneumoDetect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='doctor_dashboard.css') }}">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">PneumoDetect</div>
+
+        <ul class="nav-links">
+            <li><a href="{{ url_for('doctor_dashboard') }}">Dashboard</a></li>
+            <li class="active"><a href="{{ url_for('upload_page') }}">Upload X-ray</a></li>
+            <li><a href="{{ url_for('reports_page') }}">Reports</a></li>
+            <li><a href="{{ url_for('profile_page') }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <h1>Upload Patient X-ray</h1>
+
+        <div class="upload-card">
+
+            <form method="POST"
+                  action="{{ url_for('predict') }}"
+                  enctype="multipart/form-data"
+                  onsubmit="showLoading()">
+
+                <div class="form-row">
+                    <input type="text" name="patient_name" placeholder="Patient Name" required>
+                </div>
+
+                <div class="form-row">
+                    <input type="number" name="age" placeholder="Age" required>
+                </div>
+
+                <div class="form-row">
+                    <select name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <input type="file" name="image" required>
+                </div>
+
+                <button type="submit" class="detect-btn">
+                    DETECT
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- Loading / Message Overlay -->
+<div id="loadingMessage" class="loading-overlay" style="display:none;">
+    <div class="loading-box">
+        <div id="spinner" class="spinner"></div>
+        <p id="loadingText">AI is analyzing the X-ray... Please wait</p>
+    </div>
+</div>
+
+<script>
+function showLoading() {
+    document.getElementById("loadingMessage").style.display = "flex";
+}
+</script>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+
+          let overlay = document.getElementById("loadingMessage");
+          let spinner = document.getElementById("spinner");
+          let text = document.getElementById("loadingText");
+
+          overlay.style.display = "flex";
+          spinner.style.display = "none";
+          text.innerText = "{{ messages[0] }}";
+
+          setTimeout(function() {
+              overlay.style.display = "none";
+          }, 2000);
+
+      });
+    </script>
+  {% endif %}
+{% endwith %}
+
+</body>
+</html>

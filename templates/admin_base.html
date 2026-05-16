@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel - PneumoDetect</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            PneumoDetect Admin
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="/admin-dashboard">Dashboard</a></li>
+            <li><a href="/admin-users">User Management</a></li>
+            
+            
+            <li><a href="/admin-reports">Reports</a></li>
+            
+            <li><a href="/admin-logs">System Logs</a></li>
+            <li class="logout"><a href="/admin-logout">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+</div>
+
+</body>
+</html>
