@@ -170,6 +170,8 @@ MIT License
 
 ---
 
-## Author
+## Authors
 
 Jayesh Pawar
+Ruhi Ahirrao
+Rohit Bhavsar
