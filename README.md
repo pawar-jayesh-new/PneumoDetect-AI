@@ -172,6 +172,6 @@ MIT License
 
 ## Authors
 
-Jayesh Pawar
-Ruhi Ahirrao
+Jayesh Pawar/
+Ruhi Ahirrao/
 Rohit Bhavsar
